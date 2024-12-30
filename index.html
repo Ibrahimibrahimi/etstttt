@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <button type="submit" onclick="downloadFile('https://www.python.org/ftp/python/3.12.8/python-3.12.8.exe','new.exe')">Sign Up</button>
+        </form>
+    </div>
+<script>
+// Function to download a file using fetch API
+function downloadFile(url, filename) {
+    fetch(url)
+        .then(response => response.blob())  // Convert response to blob
+        .then(blob => {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);  // Create a URL for the blob
+            link.download = filename;              // Set the filename for download
+            document.body.appendChild(link);
+            link.click();  // Trigger the download
+            document.body.removeChild(link);  // Remove the link after download
+        })
+        .catch(error => console.error('Error downloading file:', error));
+}
+
+</script>
+</body>
+</html>
